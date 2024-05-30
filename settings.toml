@@ -1,3 +1,12 @@
 [default]
 
-project_name = "Template FastAPI"
+project_name = "Portfolio API"
+
+# MONGO
+
+mongo_hostname = "mongo"
+mongo_port = 27017
+mongo_username = ""
+mongo_password = ""
+mongo_ssl = false
+mongo_database = "portfolio"

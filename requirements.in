@@ -1,6 +1,9 @@
 dynaconf
 fastapi
 httpx
+mongomock-motor
+motor
+pydantic
 pytest
 pytest-asyncio
 pytest-cov
