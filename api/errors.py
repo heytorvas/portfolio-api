@@ -5,6 +5,8 @@ from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
+from api.exceptions import DatabaseError, ObjectNotFoundError
+
 
 def _generate_error(code: int, exc: Exception, internal: bool = False):
     status_code = code // 100
@@ -53,6 +55,11 @@ def error_handler(app: FastAPI) -> None:
     @app.exception_handler(RequestValidationError)
     async def validation_error_handler(_request: Request,
                                        exc: RequestValidationError):
+        return JSONResponse(**_generate_error(40410, exc))
+
+    @app.exception_handler(ObjectNotFoundError)
+    async def object_not_found_error_handler(_request: Request,
+                                             exc: ObjectNotFoundError):
         return JSONResponse(**_generate_error(42200, exc))
 
     @app.exception_handler(HTTPException)
@@ -62,3 +69,7 @@ def error_handler(app: FastAPI) -> None:
     @app.exception_handler(Exception)
     async def generic_error_handler(_request: Request, exc: Exception):
         return JSONResponse(**_generate_error(50010, exc, internal=True))
+
+    @app.exception_handler(DatabaseError)
+    async def database_error_handler(_request: Request, exc: DatabaseError):
+        return JSONResponse(**_generate_error(50210, exc))

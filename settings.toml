@@ -10,3 +10,5 @@ mongo_username = ""
 mongo_password = ""
 mongo_ssl = false
 mongo_database = "portfolio"
+mongo_options_uuidrepresentation = "standard"
+mongo_experience_collection = "experiences"

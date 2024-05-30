@@ -6,14 +6,12 @@ from bson.errors import BSONError
 from pymongo import ReturnDocument
 from pymongo.errors import PyMongoError
 
+from api.exceptions import DatabaseError
+
 if TYPE_CHECKING:
     from bson.typings import _DocumentType
     from motor.motor_asyncio import AsyncIOMotorClient
-    from pymongo.results import InsertOneResult
-
-
-class DatabaseError(Exception):
-    """A database error."""
+    from pymongo.results import DeleteResult, InsertOneResult
 
 
 class MongoDatabase:
@@ -50,9 +48,7 @@ class MongoDatabase:
             db = self.client[self.database]
             coll = db[collection]
             return [
-                doc async for doc in coll.find(query, {
-                    '_id': 0
-                }, sort=sort).limit(limit)
+                doc async for doc in coll.find(query, sort=sort).limit(limit)
             ]
         except (PyMongoError, BSONError) as error:
             raise self._query_db_error(error) from error
@@ -65,7 +61,16 @@ class MongoDatabase:
         try:
             db = self.client[self.database]
             coll = db[collection]
-            return await coll.find_one(query, {'_id': 0})
+            return await coll.find_one(query)
+        except (PyMongoError, BSONError) as error:
+            raise self._query_db_error(error) from error
+
+    async def delete(self, collection: str, query: dict) -> DeleteResult:
+        """Delete one document by search."""
+        try:
+            db = self.client[self.database]
+            coll = db[collection]
+            return await coll.delete_one(query)
         except (PyMongoError, BSONError) as error:
             raise self._query_db_error(error) from error
 
