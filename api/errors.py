@@ -5,7 +5,8 @@ from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
-from api.exceptions import DatabaseError, ObjectNotFoundError
+from api.exceptions import DatabaseError, ObjectNotFoundError, \
+    UnauthorizedHTTPError
 
 
 def _generate_error(code: int, exc: Exception, internal: bool = False):
@@ -51,6 +52,11 @@ def _generate_error(code: int, exc: Exception, internal: bool = False):
 
 def error_handler(app: FastAPI) -> None:
     """Error handler for application."""
+
+    @app.exception_handler(UnauthorizedHTTPError)
+    async def unauthorized_access_error_handler(_request: Request,
+                                                exc: UnauthorizedHTTPError):
+        return JSONResponse(**_generate_error(40100, exc))
 
     @app.exception_handler(RequestValidationError)
     async def validation_error_handler(_request: Request,

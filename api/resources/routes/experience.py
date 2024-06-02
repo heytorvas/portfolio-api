@@ -4,6 +4,7 @@ from uuid import UUID
 from fastapi import APIRouter, status
 
 from api.domain.models.experience import Experience
+from api.domain.models.language import LanguageEnum
 from api.resources.services.experience import ExperienceService
 
 
@@ -14,8 +15,8 @@ def build_router(service: ExperienceService) -> APIRouter:  # noqa: D103
                 status_code=status.HTTP_200_OK,
                 response_model=Optional[List[Experience]],
                 response_model_by_alias=False)
-    async def get_experiences():
-        return await service.find()
+    async def get_experiences(language: LanguageEnum = None):
+        return await service.find(language)
 
     @router.get('/{id}',
                 response_model=Experience,

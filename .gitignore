@@ -37,3 +37,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+
+# IDEs
+.vscode/
+.idea/
