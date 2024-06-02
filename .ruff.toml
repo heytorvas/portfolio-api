@@ -39,6 +39,7 @@ ignore = [
     "Q000",  # (bad-quotes-inline-string) Single quotes found but double quotes preferred
     "SIM108",  # (if-else-block-instead-of-if-exp) Use ternary operator {contents} instead of if-else-block
     "T20",  # (flake8-print (T20)) https://beta.ruff.rs/docs/rules/#flake8-print-t20
+    "TCH001", # (typing-only-first-party-import)
     "TD",  # (flake8-todos (TD)) https://beta.ruff.rs/docs/rules/#flake8-todos-td
     "UP007",  # (non-pep604-annotation) Use X | Y for type annotations
     "UP038", # (non-pep604-isinstance) Use X | Y in {} call instead of (X, Y)

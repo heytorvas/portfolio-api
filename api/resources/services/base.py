@@ -16,7 +16,8 @@ class BaseService:
     async def save(self, data) -> dict:
         """Save document at database collection."""
         object_id = await self.repository.save(data)
-        return await self.find_one(object_id.inserted_id)
+        return await self.find_one(object_id=object_id.inserted_id,
+                                   language=None)
 
     async def find(self) -> list:
         """Retrieve all documents from database collection."""
