@@ -3,6 +3,7 @@ from uuid import UUID
 from api.domain.repositories.base import BaseRepository
 
 
+
 class BaseService:
     """Base class for services."""
 

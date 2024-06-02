@@ -8,12 +8,12 @@ from api.errors import error_handler
 def build_error_payload(code, message):
     return {'error': {'code': code, 'message': message}}
 
-@pytest.fixture
+@pytest.fixture()
 def test_app():
     class InputSchema(BaseModel):
         a: float
         b: int
-    
+
     app = FastAPI()
 
     @app.post('/42200')
@@ -23,12 +23,12 @@ def test_app():
     @app.get('/50010')
     def _():
         raise Exception('Unhandled error')
-    
+
     error_handler(app)
 
     return app
 
-@pytest.fixture
+@pytest.fixture()
 def test_client(test_app):
     return TestClient(test_app, raise_server_exceptions=False)
 

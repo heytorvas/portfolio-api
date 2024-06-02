@@ -1,0 +1,162 @@
+[
+  {
+    "company": "Objective",
+    "date_from": "2024-04",
+    "date_to": null,
+    "stack": [
+      "Python",
+      "Flask",
+      "MySQL",
+      "Docker",
+      "GitHub",
+      "Scrum",
+      "XP"
+    ],
+    "details": [
+      {
+        "role": {
+          "en": "Software Engineer",
+          "pt": "Engenheiro de Software"
+        },
+        "project": {
+          "en": "Pricing Tool",
+          "pt": "Pricing Tool"
+        },
+        "description": [
+          {
+            "en": "Development of an internal platform to assist with product pricing",
+            "pt": "Desenvolvimento de uma plataforma interna para auxiliar a precificação de produtos"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": "idwall",
+    "date_from": "2022-03",
+    "date_to": "2024-04",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "MongoDB",
+      "PostgreSQL",
+      "Docker",
+      "Kubernetes",
+      "Airflow",
+      "Spark",
+      "GCS",
+      "AWS",
+      "BigQuery",
+      "Databricks",
+      "Scrum",
+      "Kanban",
+      "GitLab"
+    ],
+    "details": [
+      {
+        "role": {
+          "en": "Software Engineer",
+          "pt": "Engenheiro de Software"
+        },
+        "project": {
+          "en": "Facelink, FaceMatch, Liveness and Onlylabels",
+          "pt": "Facelink, FaceMatch, Liveness e Onlylabels"
+        },
+        "description": [
+          {
+            "en": "Development of a tool to facial biometric validation by selfie (a photo) and taxpayer identification number (CPF)",
+            "pt": "Desenvolvimento de ferramenta para validação da biometria facial através de uma selfie e número do CPF"
+          },
+          {
+            "en": "Development of a tool to authentication by facial recognition",
+            "pt": "Desenvolvimento de ferramenta para autenticação por meio de reconhecimento facial"
+          },
+          {
+            "en": "Development of an image labeling internal tool",
+            "pt": "Desenvolvimento de um produto interno para rotulação de imagens"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": "Zetta",
+    "date_from": "2021-01",
+    "date_to": "2022-03",
+    "stack": [
+      "Python",
+      "Flask",
+      "Django",
+      "Selenium",
+      "BeautifulSoup",
+      "RabbitMQ",
+      "Redis",
+      "PostgreSQL",
+      "Postgis",
+      "Angular",
+      "Docker",
+      "Scrum",
+      "XP",
+      "GitLab"
+    ],
+    "details": [
+      {
+        "role": {
+          "en": "Data Scientist",
+          "pt": "Cientista de Dados"
+        },
+        "project": {
+          "en": "MPF, VALE and MVPOWER",
+          "pt": "MPF, VALE e MVPOWER"
+        },
+        "description": [
+          {
+            "en": "Development of ETLs to data extraction and APIs to data visualization by message broker",
+            "pt": "Desenvolvimento de ETLs para scraping de informações e de APIs para disponibilização dos dados utilizando message broker"
+          },
+          {
+            "en": "Development of portal using Geonode to maps, layers and documents visualization",
+            "pt": "Desenvolvimento de portais usando GeoNode para visualização de mapas, camadas e documentos e GeoServer para persistência dos dados"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": "ESC",
+    "date_from": "2021-01",
+    "date_to": "2022-03",
+    "stack": [
+      "Python",
+      "Django",
+      "Selenium",
+      "BeautifulSoup",
+      "PostgreSQL",
+      "Angular",
+      "Scrum",
+      "GitLab"
+    ],
+    "details": [
+      {
+        "role": {
+          "en": "Full Stack Developer",
+          "pt": "Desenvolvedor Full Stack"
+        },
+        "project": {
+          "en": "TCE/TO",
+          "pt": "TCE/TO"
+        },
+        "description": [
+          {
+            "en": "Scraping, by ETLs, of the expenses of the transparency portals of the city halls and town halls of Tocantins municipalities",
+            "pt": "Desenvolvimento de ETLs para scraping das despesas dos portais de transparência das prefeituras e câmaras municipais tocantinenses"
+          },
+          {
+            "en": "Development of a statistics dashboard about organizations using APIs",
+            "pt": "Desenvolvimento do portal com dashboard contendo estatísticas sobre as organizações através do consumo de APIs"
+          }
+        ]
+      }
+    ]
+  }
+]

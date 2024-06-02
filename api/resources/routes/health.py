@@ -8,6 +8,7 @@ async def check_database_status_connection(database: MongoDatabase) -> str:
 
     Returns:
         str: Connection status.
+
     """
     pong = await database.ping()
     return 'UP' if 'ok' in pong and pong['ok'] == 1 else 'DOWN'

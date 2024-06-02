@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from api.config import settings
 from api.data.mongo import MongoDatabase
 from api.errors import error_handler
-from api.resources.routes import experience, health
+from api.resources.routes import experience, health, internal, token
 from api.resources.services.experience import ExperienceService
 
 
@@ -18,6 +18,12 @@ def build_app(mongo_database: MongoDatabase,
     app.include_router(experience.build_router(experience_service),
                        prefix='/v1/experiences',
                        tags=['experiences'])
+    app.include_router(internal.build_router(experience_service),
+                       prefix='/internal',
+                       tags=['internal'])
+    app.include_router(token.build_router(),
+                       prefix='/token',
+                       tags=['token'])
 
     error_handler(app)
 
