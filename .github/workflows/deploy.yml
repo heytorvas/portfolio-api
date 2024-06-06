@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set environment variables
+        run: |
+          touch .env
+          echo "DYNACONF_ENVIRONMENT=prd" >> .env
+          echo "DYNACONF_MONGO_HOSTNAME=${{ secrets.MONGO_HOSTNAME }}" >> .env
+          echo "DYNACONF_MONGO_USERNAME=${{ secrets.MONGO_USERNAME }}" >> .env
+          echo "DYNACONF_MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}" >> .env
+      - uses: neobrains/space-pipe@v0.5
+        with:
+          access_token: ${{ secrets.DETA_ACCESS_TOKEN }}
+          project_id: ${{ secrets.DETA_PROJECT_ID }}
+          space_push: true
+          space_release: false
+          list_on_discovery: false

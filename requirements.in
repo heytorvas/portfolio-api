@@ -5,6 +5,7 @@ mongomock-motor
 motor
 pydantic
 pyjwt
+pymongo[srv]
 pytest
 pytest-asyncio
 pytest-cov

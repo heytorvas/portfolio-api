@@ -11,9 +11,9 @@ jwt_expiration_minutes = 3
 
 # MONGO
 mongo_hostname = "mongo"
-mongo_port = 27017
 mongo_username = ""
 mongo_password = ""
+mongo_port = 27017
 mongo_ssl = false
 mongo_database = "portfolio"
 mongo_options_uuidrepresentation = "standard"

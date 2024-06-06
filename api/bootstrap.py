@@ -1,7 +1,9 @@
-from typing import NamedTuple, Self
+from typing import NamedTuple
 
 import dynaconf
 from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo.server_api import ServerApi
+from typing_extensions import Self
 
 from api.data.mongo import MongoDatabase
 from api.domain.repositories.experience import ExperienceRepository
@@ -19,13 +21,19 @@ class BootstrapContainer(NamedTuple):
     @classmethod
     def from_setings(cls, settings: dynaconf.LazySettings) -> Self:
         """Load application components by settings."""
-        mongo_client = AsyncIOMotorClient(
-            host=settings.MONGO_HOSTNAME,
-            port=settings.MONGO_PORT,
-            username=settings.MONGO_USERNAME,
-            password=settings.MONGO_PASSWORD,
-            ssl=settings.MONGO_SSL,
-            uuidRepresentation=settings.MONGO_OPTIONS_UUIDREPRESENTATION)
+        if settings.ENVIRONMENT == 'prd':
+            mongo_uri = f'mongodb+srv://{settings.MONGO_USERNAME}:{settings.MONGO_PASSWORD}@{settings.MONGO_HOSTNAME}'
+            mongo_client = AsyncIOMotorClient(mongo_uri,
+                                              server_api=ServerApi('1'))
+        else:
+            mongo_client = AsyncIOMotorClient(
+                host=settings.MONGO_HOSTNAME,
+                port=settings.MONGO_PORT,
+                username=settings.MONGO_USERNAME,
+                password=settings.MONGO_PASSWORD,
+                ssl=settings.MONGO_SSL,
+                uuidRepresentation=settings.MONGO_OPTIONS_UUIDREPRESENTATION)
+
         mongo_database = MongoDatabase(mongo_client, settings.MONGO_DATABASE)
         experience_repository = ExperienceRepository(
             mongo_database, settings.MONGO_EXPERIENCE_COLLECTION)
