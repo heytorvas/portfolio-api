@@ -13,9 +13,11 @@ def _generate_error(code: int, exc: Exception, internal: bool = False):
     status_code = code // 100
     validation_error = isinstance(exc,
                                   (RequestValidationError, ValidationError))
-    error_message = 'Validation Error.' if validation_error else str(exc)
-
-    if not error_message:
+    if validation_error:
+        error_message = 'Validation Error.'
+    elif internal:
+        error_message = str(exc)
+    else:
         error_message = exc.detail
 
     if validation_error:
