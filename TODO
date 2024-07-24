@@ -1,0 +1,10 @@
+X include date_from and date_to in education schema
+- response education model with alias (_id)
+- create endpoints with update action
+- create skill endpoint
+- reorganize user/about context
+    user: email, name, phone, password
+    about: address, social_network, summary
+- develop login logical with access and authorizations
+- include logs
+- rename project repository

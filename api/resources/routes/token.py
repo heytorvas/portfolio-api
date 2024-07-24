@@ -26,20 +26,20 @@ def get_token(token: str) -> dict:
                           settings.JWT_SECRET_KEY,
                           algorithms=[settings.JWT_ALGORITHM])
     except InvalidTokenError as error:
-        raise UnauthorizedHTTPError('Invalid credentials') from error
+        raise UnauthorizedHTTPError("Invalid credentials") from error
 
 
 def build_router() -> APIRouter:  # noqa: D103
     router = APIRouter()
 
-    @router.post('')
+    @router.post("")
     async def login(password: str):
         if password == settings.JWT_PASSWORD:
             return {
                 "access_token": __create_access_token({"sub":
                                                        "administrator"}),
-                "token_type": "bearer"
+                "token_type": "bearer",
             }
-        raise UnauthorizedHTTPError('Invalid credentials')
+        raise UnauthorizedHTTPError("Invalid credentials")
 
     return router

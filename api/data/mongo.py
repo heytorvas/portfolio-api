@@ -36,11 +36,13 @@ class MongoDatabase:
         except (PyMongoError, BSONError) as error:
             raise self._query_db_error(error) from error
 
-    async def find(self,
-                   collection: str,
-                   query: Union[dict, None] = None,
-                   sort: Union[list, None] = None,
-                   limit: int = 100) -> Optional[_DocumentType]:
+    async def find(
+        self,
+        collection: str,
+        query: Union[dict, None] = None,
+        sort: Union[list, None] = None,
+        limit: int = 100,
+    ) -> Optional[_DocumentType]:
         """Retrieve a list by search at database collection."""
         try:
             if query is None:
@@ -86,10 +88,6 @@ class MongoDatabase:
             raise self._query_db_error(error) from error
 
     async def ping(self) -> dict:
-        """Check application is connected with database.
-
-        Returns:
-            dict: Database response.
-        """
+        """Check application is connected with database."""
         db = self.client[self.database]
-        return await db.command({'ping': 1})
+        return await db.command({"ping": 1})

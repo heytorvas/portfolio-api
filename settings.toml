@@ -6,7 +6,7 @@ environment = "dev"
 # JWT
 jwt_secret_key = ""
 jwt_algorithm = "HS256"
-jwt_password = ""
+jwt_password = "lorem ipsum"
 jwt_expiration_minutes = 3
 
 # MONGO
@@ -18,3 +18,10 @@ mongo_ssl = false
 mongo_database = "portfolio"
 mongo_options_uuidrepresentation = "standard"
 mongo_experience_collection = "experiences"
+mongo_user_collection = "user"
+mongo_education_collection = "education"
+mongo_about_collection = "about"
+
+[testing]
+
+environment = "test"

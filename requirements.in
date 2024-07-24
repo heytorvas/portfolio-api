@@ -9,4 +9,6 @@ pymongo[srv]
 pytest
 pytest-asyncio
 pytest-cov
+pytest-xdist
+python-json-logger
 uvicorn
