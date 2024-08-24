@@ -1,6 +1,6 @@
 import uuid
 from datetime import date, datetime, time, timezone
-from typing import Union
+from typing import Union, Optional
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -33,6 +33,6 @@ class BaseWithDate(Base):
         return self
 
     @field_validator("date_from", "date_to")
-    def parse_date(cls, value) -> str | None:
+    def parse_date(cls, value) -> Optional[str]:
         """Format date to string with year and month."""
         return value.strftime("%Y-%m") if value else value

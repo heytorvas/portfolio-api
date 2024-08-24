@@ -32,12 +32,3 @@ class ExperienceCreateSchema(BaseModel):
 
 class ExperienceCreateOutputSchema(ExperienceCreateSchema):
     id: UUID = Field(...)
-
-
-# class ExperienceSchema(Experience):
-#     """Schema for experience context."""
-#
-#
-#     @field_validator("date_from", "date_to")
-#     def parse_date(cls, value) -> str | None:
-#         """Format date to string with year and month."""
