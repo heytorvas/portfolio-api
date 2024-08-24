@@ -1,0 +1,34 @@
+[
+  {
+    "degree": {
+      "en": "Postgraduate Degree",
+      "pt": "Pós graduação"
+    },
+    "school": {
+      "en": "UNICV",
+      "pt": "UNICV"
+    },
+    "course": {
+      "en": "Data Science and Big Data",
+      "pt": "Ciência de Dados e Big Data"
+    },
+    "date_from": "2023-07",
+    "date_to": "2023-10"
+  },
+  {
+    "degree": {
+      "en": "Bachelor Degree",
+      "pt": "Bacharelado"
+    },
+    "school": {
+      "en": "State of Tocantins University",
+      "pt": "Universidade Estadual do Tocantins"
+    },
+    "course": {
+      "en": "Information Systems",
+      "pt": "Sistemas de Informação"
+    },
+    "date_from": "2018-02",
+    "date_to": "2021-12"
+  }
+]

@@ -30,3 +30,4 @@ class SkillEnum(str, Enum):
     GITHUB = "GitHub"
     GITLAB = "GitLab"
     REDIS = "Redis"
+    DYNAMODB = "DynamoDB"

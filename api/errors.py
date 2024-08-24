@@ -13,13 +13,7 @@ def _generate_error(code: int, exc: Exception, internal: bool = False):
     status_code = code // 100
     validation_error = isinstance(exc,
                                   (RequestValidationError, ValidationError))
-    error_message = 'Validation Error.' if validation_error else str(exc)
-
-    if not error_message:
-        error_message = exc.detail
-
     if validation_error:
-        errors = exc.errors()
         return {
             "content": {
                 "error": {
@@ -32,11 +26,19 @@ def _generate_error(code: int, exc: Exception, internal: bool = False):
                         ".".join([str(loc) for loc in error["loc"]]),
                         "message":
                         error["msg"],
-                    } for error in errors],
+                    } for error in exc.errors()],
                 }
             },
             "status_code": 422,
         }
+
+    if internal:
+        error_message = str(exc)
+    else:
+        try:
+            error_message = exc.detail
+        except:
+            error_message = exc.args[0]
 
     return {
         "content": {
@@ -61,12 +63,12 @@ def error_handler(app: FastAPI) -> None:
     @app.exception_handler(RequestValidationError)
     async def validation_error_handler(_request: Request,
                                        exc: RequestValidationError):
-        return JSONResponse(**_generate_error(40410, exc))
+        return JSONResponse(**_generate_error(42200, exc))
 
     @app.exception_handler(ObjectNotFoundError)
     async def object_not_found_error_handler(_request: Request,
                                              exc: ObjectNotFoundError):
-        return JSONResponse(**_generate_error(42200, exc))
+        return JSONResponse(**_generate_error(40410, exc))
 
     @app.exception_handler(HTTPException)
     async def http_exception_handler(_request: Request, exc: HTTPException):
