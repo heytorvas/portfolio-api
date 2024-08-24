@@ -37,7 +37,8 @@ class BootstrapContainer(NamedTuple):
         if settings.ENVIRONMENT == "prd":
             mongo_uri = f"mongodb+srv://{settings.MONGO_USERNAME}:{settings.MONGO_PASSWORD}@{settings.MONGO_HOSTNAME}"
             mongo_client = AsyncIOMotorClient(mongo_uri,
-                                              server_api=ServerApi("1"))
+                                              server_api=ServerApi("1"),
+                                              uuidRepresentation=settings.MONGO_OPTIONS_UUIDREPRESENTATION)
         elif settings.ENVIRONMENT == "test":
             mongo_client = AsyncMongoMockClient()
         else:

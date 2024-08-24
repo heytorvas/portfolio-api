@@ -1,6 +1,6 @@
 import uuid
 from datetime import date, datetime, time, timezone
-from typing import Union, Optional
+from typing import Optional, Union
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
