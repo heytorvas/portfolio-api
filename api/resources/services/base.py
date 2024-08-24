@@ -19,11 +19,15 @@ class BaseService:
     @staticmethod
     def __get_attributes_with_language_type(model: BaseModel) -> list:
         model_fields = model.model_fields
-        return [
-            field for field in model_fields
-            if model_fields[field].annotation.__qualname__ ==
-            LanguageFields.__qualname__
-        ]
+        fields = []
+        for field in model_fields:
+            try:
+                if model_fields[
+                        field].annotation.__qualname__ == LanguageFields.__qualname__:
+                    fields.append(field)
+            except AttributeError:
+                pass
+        return fields
 
     def __create_schema_from_model(self, data: BaseModel,
                                    language: LanguageEnum):
