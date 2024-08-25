@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from api.config import settings
 from api.data.mongo import MongoDatabase
@@ -19,6 +20,14 @@ def build_app(mongo_database: MongoDatabase,
     app = FastAPI(title=settings.PROJECT_NAME, debug=True)
     # app.add_middleware(RouterLoggingMiddleware,
     #                    logger=logging.getLogger(__name__))
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
     app.include_router(health.build_router(mongo_database),
                        prefix="/health",
