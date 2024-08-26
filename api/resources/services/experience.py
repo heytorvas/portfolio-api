@@ -65,3 +65,10 @@ class ExperienceService(BaseService):
         if language:
             return self.__get_by_language(data, language)[0]
         return data
+
+    async def find_by_user(self, user: UUID, language: LanguageEnum) -> list:
+        """Retrieve all users' documents from database collection."""
+        data = await self.repository.find({"user": user})
+        if language:
+            return self.__get_by_language(data, language)
+        return data
