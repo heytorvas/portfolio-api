@@ -5,6 +5,7 @@ from fastapi import APIRouter, status
 
 from api.domain.models.experience import Experience
 from api.domain.models.language import LanguageEnum
+from api.resources.filters import OrderByOption, SortByOption
 from api.resources.schemas.experience import ExperienceCreateOutputSchema, \
     ExperienceCreateSchema, ExperienceSchema
 from api.resources.services.experience import ExperienceService
@@ -21,8 +22,10 @@ def build_router(service: ExperienceService,
         response_model=Union[list[ExperienceSchema], list[Experience]],
         response_model_by_alias=False,
     )
-    async def get_experiences(language: LanguageEnum = None):
-        return await service.find(language)
+    async def get_experiences(language: LanguageEnum = None,
+                              sort_by: SortByOption = SortByOption.DATE_TO,
+                              order_by: OrderByOption = OrderByOption.DESC):
+        return await service.find(language, sort_by, order_by)
 
     @router.get(
         "/{id}",

@@ -38,7 +38,8 @@ def build_app(mongo_database: MongoDatabase,
         tags=["experiences"],
     )
     app.include_router(
-        user.build_router(user_service, experience_service, education_service),
+        user.build_router(user_service, experience_service, education_service,
+                          about_service),
         prefix="/v1/users",
         tags=["users"],
     )

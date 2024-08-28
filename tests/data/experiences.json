@@ -125,8 +125,8 @@
   },
   {
     "company": "ESC",
-    "date_from": "2021-01",
-    "date_to": "2022-03",
+    "date_from": "2019-10",
+    "date_to": "2020-10",
     "stack": [
       "Python",
       "Django",

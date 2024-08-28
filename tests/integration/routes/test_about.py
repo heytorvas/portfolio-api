@@ -26,7 +26,7 @@ class TestAboutV1:
 
         payload["id"] = response_json.get("id")
 
-        response = client.get(f'{self.ENDPOINT}/{payload['id']}')
+        response = client.get(f"{self.ENDPOINT}/{payload['id']}")
 
         assert response.status_code == HTTP_200_OK
         assert response_json == payload

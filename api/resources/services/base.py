@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 from api.domain.models.language import LanguageEnum, LanguageFields
 from api.domain.repositories.base import BaseRepository
+from api.resources.filters import OrderByOption, QueryFilter, SortByOption
 
 
 class BaseService:
@@ -15,6 +16,7 @@ class BaseService:
 
     model = None
     schema = None
+    filter = QueryFilter()
 
     @staticmethod
     def __get_attributes_with_language_type(model: BaseModel) -> list:
@@ -61,19 +63,22 @@ class BaseService:
         object_id = await self.repository.save(self.model(**data.model_dump()))
         return await self.repository.find_one(object_id=object_id.inserted_id)
 
-    async def find(self, language: LanguageEnum = None) -> list:
+    async def find(self, language: LanguageEnum, sort_by: SortByOption,
+                   order_by: OrderByOption) -> list:
         """Retrieve all documents from database collection."""
         data = await self.repository.find()
         if language:
-            return self.__get_by_language(data, language)
-        return data
+            data = self.__get_by_language(data, language)
+        return self.filter.sort(data=data, sort_by=sort_by, order_by=order_by)
 
-    async def find_by_user(self, user: UUID, language: LanguageEnum) -> list:
+    async def find_by_user(self, user: UUID, language: LanguageEnum,
+                           sort_by: SortByOption,
+                           order_by: OrderByOption) -> list:
         """Retrieve all users' documents from database collection."""
         data = await self.repository.find({"user": user})
         if language:
-            return self.__get_by_language(data, language)
-        return data
+            data = self.__get_by_language(data, language)
+        return self.filter.sort(data=data, sort_by=sort_by, order_by=order_by)
 
     async def find_one_and_update(self, object_id: UUID, data: dict) -> dict:
         """Retrieve an document and update at database collection."""

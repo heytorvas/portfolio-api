@@ -1,21 +1,6 @@
-[
-  {
-    "name": "Heytor Victor Araujo Silva",
-    "email": "heytor@heytor.dev",
-    "address": {
-      "city": "Paraíso do Tocantins",
-      "state": "TO",
-      "country": "Brazil"
-    },
-    "phone": "+5563992808016",
-    "social_network": {
-      "website": "https://heytor.dev",
-      "github": "https://github.com/heytorvas",
-      "linkedin": "https://linkedin.com/in/heytorvictor"
-    },
-    "summary": {
-      "en": "Postgraduate in Data Science and Big Data by UNICV, graduate in Information Systems by State of Tocantins University, working as Python Software Engineer with development, maintenance and architecture of APIs. Also, I had professional experience as Data Scientist/Engineer, with development scraping/crawlers pipelines consuming the most common databases and training image recognition models.",
-      "pt": "Pós graduado em Ciência de Dados e Big Data pela UNICV, graduado em Sistemas de Informação pela Universidade Estadual do Tocantins, atuando como Engenheiro de Software Python com desenvolvimento, manutenção e arquitetura de APIs. Além disso, tive experiência profissional como Cientista/Engenheiro de Dados, trabalhando com a criação de pipelines de scraping/crawlers consumindo os principais bancos de dados e treinamento de modelos para reconhecimento de imagens."
-    }
-  }
-]
+{
+  "name": "Heytor Victor Araujo Silva",
+  "email": "heytor@heytor.dev",
+  "phone": "+5563992808016",
+  "password": "lorem ipsum"
+}

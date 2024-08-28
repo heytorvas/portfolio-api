@@ -6,6 +6,7 @@ from starlette.status import HTTP_200_OK, HTTP_201_CREATED
 
 from api.domain.models.about import About
 from api.domain.models.language import LanguageEnum
+from api.resources.filters import OrderByOption, SortByOption
 from api.resources.schemas.about import AboutCreateOutputSchema, \
     AboutCreateSchema, AboutSchema
 from api.resources.services.about import AboutService
@@ -21,7 +22,9 @@ def build_router(service: AboutService,
                 response_model_by_alias=False,
                 status_code=HTTP_200_OK)
     async def get_about(language: LanguageEnum = None):
-        return await service.find(language)
+        sort_by = SortByOption.DATE_TO
+        order_by = OrderByOption.DESC
+        return await service.find(language, sort_by, order_by)
 
     @router.get("/{id}",
                 response_model=Union[AboutSchema, About],

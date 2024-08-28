@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Union
 
 from api.domain.models.experience import Experience
+from api.resources.filters import OrderByOption, SortByOption
 from api.resources.schemas.experience import ExperienceDetailSchema, \
     ExperienceSchema
 from api.resources.services.base import BaseService
@@ -46,14 +47,14 @@ class ExperienceService(BaseService):
         ]
 
     async def find(
-        self,
-        language: LanguageEnum = None
+        self, language: LanguageEnum, sort_by: SortByOption,
+        order_by: OrderByOption
     ) -> Union[list[Experience], list[ExperienceSchema]]:
         """Retrieve all documents from database collection."""
         data = await self.repository.find()
         if language:
-            return self.__get_by_language(data, language)
-        return data
+            data = self.__get_by_language(data, language)
+        return self.filter.sort(data=data, sort_by=sort_by, order_by=order_by)
 
     async def find_one(
             self,
@@ -66,9 +67,11 @@ class ExperienceService(BaseService):
             return self.__get_by_language(data, language)[0]
         return data
 
-    async def find_by_user(self, user: UUID, language: LanguageEnum) -> list:
+    async def find_by_user(self, user: UUID, language: LanguageEnum,
+                           sort_by: SortByOption,
+                           order_by: OrderByOption) -> list:
         """Retrieve all users' documents from database collection."""
         data = await self.repository.find({"user": user})
         if language:
-            return self.__get_by_language(data, language)
-        return data
+            data = self.__get_by_language(data, language)
+        return self.filter.sort(data=data, sort_by=sort_by, order_by=order_by)
